@@ -1,0 +1,733 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2025-06-15T10:00:00.000Z" agent="5.0" etag="abc123" version="24.0.0" type="device">
+  
+  <!-- ERD Diagram -->
+  <diagram name="ERD-Sistem-Inventaris-Alat-Medis" id="erd-diagram">
+    <mxGraphModel dx="1422" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        
+        <!-- Entity User -->
+        <mxCell id="entity-user" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
+          <mxGeometry x="60" y="80" width="200" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="user-attr" value="+ user_id: INT (PK)&#xa;+ username: VARCHAR(50)&#xa;+ password: VARCHAR(255)&#xa;+ nama_lengkap: VARCHAR(100)&#xa;+ email: VARCHAR(100)&#xa;+ role: ENUM&#xa;+ status_aktif: BOOLEAN&#xa;+ created_at: TIMESTAMP&#xa;+ updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="entity-user">
+          <mxGeometry y="26" width="200" height="154" as="geometry" />
+        </mxCell>
+        
+        <!-- Entity Alat_Medis -->
+        <mxCell id="entity-alat" value="Alat_Medis" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
+          <mxGeometry x="320" y="80" width="220" height="220" as="geometry" />
+        </mxCell>
+        <mxCell id="alat-attr" value="+ alat_id: INT (PK)&#xa;+ nama_alat: VARCHAR(100)&#xa;+ merk: VARCHAR(50)&#xa;+ model: VARCHAR(50)&#xa;+ nomor_seri: VARCHAR(100)&#xa;+ tahun_produksi: YEAR&#xa;+ tanggal_pembelian: DATE&#xa;+ harga_pembelian: DECIMAL&#xa;+ lokasi_penempatan: VARCHAR(100)&#xa;+ status_alat: ENUM&#xa;+ kategori: VARCHAR(50)&#xa;+ spesifikasi_teknis: TEXT&#xa;+ created_at: TIMESTAMP&#xa;+ updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="entity-alat">
+          <mxGeometry y="26" width="220" height="194" as="geometry" />
+        </mxCell>
+        
+        <!-- Entity Jadwal_Kalibrasi -->
+        <mxCell id="entity-jadwal" value="Jadwal_Kalibrasi" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="600" y="80" width="250" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="jadwal-attr" value="+ jadwal_id: INT (PK)&#xa;+ alat_id: INT (FK)&#xa;+ tanggal_kalibrasi_terakhir: DATE&#xa;+ tanggal_kalibrasi_berikutnya: DATE&#xa;+ interval_kalibrasi: INT&#xa;+ status_kalibrasi: ENUM&#xa;+ teknisi_penanggung_jawab: INT (FK)&#xa;+ catatan: TEXT&#xa;+ created_at: TIMESTAMP&#xa;+ updated_at: TIMESTAMP" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="entity-jadwal">
+          <mxGeometry y="26" width="250" height="174" as="geometry" />
+        </mxCell>
+        
+        <!-- Entity Dokumen_Kalibrasi -->
+        <mxCell id="entity-dokumen" value="Dokumen_Kalibrasi" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="900" y="80" width="200" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="dokumen-attr" value="+ dokumen_id: INT (PK)&#xa;+ jadwal_id: INT (FK)&#xa;+ nama_dokumen: VARCHAR(200)&#xa;+ jenis_dokumen: ENUM&#xa;+ file_path: VARCHAR(500)&#xa;+ ukuran_file: INT&#xa;+ upload_by: INT (FK)&#xa;+ tanggal_upload: TIMESTAMP&#xa;+ keterangan: TEXT" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="entity-dokumen">
+          <mxGeometry y="26" width="200" height="154" as="geometry" />
+        </mxCell>
+        
+        <!-- Entity Log_Aktivitas -->
+        <mxCell id="entity-log" value="Log_Aktivitas" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="320" y="360" width="200" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="log-attr" value="+ log_id: INT (PK)&#xa;+ user_id: INT (FK)&#xa;+ alat_id: INT (FK)&#xa;+ aktivitas: VARCHAR(200)&#xa;+ deskripsi: TEXT&#xa;+ timestamp: TIMESTAMP&#xa;+ ip_address: VARCHAR(45)" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="entity-log">
+          <mxGeometry y="26" width="200" height="134" as="geometry" />
+        </mxCell>
+        
+        <!-- Relationships -->
+        <mxCell id="rel-user-jadwal" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="entity-user" target="entity-jadwal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-user-jadwal-label" value="menangani" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel-user-jadwal">
+          <mxGeometry x="-0.1" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="rel-alat-jadwal" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="entity-alat" target="entity-jadwal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-alat-jadwal-label" value="memiliki" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel-alat-jadwal">
+          <mxGeometry x="-0.1" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="rel-jadwal-dokumen" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="entity-jadwal" target="entity-dokumen">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-jadwal-dokumen-label" value="memiliki" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel-jadwal-dokumen">
+          <mxGeometry x="-0.1" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="rel-user-log" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="entity-user" target="entity-log">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-user-log-label" value="melakukan" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel-user-log">
+          <mxGeometry x="-0.1" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="rel-alat-log" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;" edge="1" parent="1" source="entity-alat" target="entity-log">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="rel-alat-log-label" value="terkait" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel-alat-log">
+          <mxGeometry x="-0.1" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="rel-user-dokumen" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=ERmany;endFill=0;startArrow=ERone;startFill=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="entity-user" target="entity-dokumen">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="320" y="170" />
+              <mxPoint x="320" y="40" />
+              <mxPoint x="1000" y="40" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="rel-user-dokumen-label" value="mengupload" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="rel-user-dokumen">
+          <mxGeometry x="-0.1" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  
+  <!-- Activity Diagram -->
+  <diagram name="Activity-Diagram" id="activity-diagram">
+    <mxGraphModel dx="1422" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="ad-0" />
+        <mxCell id="ad-1" parent="ad-0" />
+        
+        <!-- Start Node -->
+        <mxCell id="start-node" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" vertex="1" parent="ad-1">
+          <mxGeometry x="350" y="30" width="30" height="30" as="geometry" />
+        </mxCell>
+        
+        <!-- Activities -->
+        <mxCell id="activity-cek-jadwal" value="Cek Jadwal Kalibrasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="ad-1">
+          <mxGeometry x="290" y="100" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="decision-jadwal" value="Apakah ada&#xa;jadwal kalibrasi?" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="ad-1">
+          <mxGeometry x="310" y="200" width="110" height="80" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="activity-tunggu" value="Tunggu Jadwal&#xa;Berikutnya" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="ad-1">
+          <mxGeometry x="520" y="200" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="activity-persiapan" value="Persiapan Alat&#xa;dan Dokumen" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="ad-1">
+          <mxGeometry x="290" y="320" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="activity-kalibrasi" value="Lakukan Kalibrasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="ad-1">
+          <mxGeometry x="290" y="420" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="activity-dokumentasi" value="Dokumentasi Hasil" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="ad-1">
+          <mxGeometry x="290" y="520" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="activity-upload" value="Upload Dokumen&#xa;ke Sistem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="ad-1">
+          <mxGeometry x="290" y="620" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="activity-update-status" value="Update Status&#xa;Kalibrasi" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="ad-1">
+          <mxGeometry x="290" y="720" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="activity-laporan" value="Generate Laporan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="ad-1">
+          <mxGeometry x="290" y="820" width="150" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- End Node -->
+        <mxCell id="end-node" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;" vertex="1" parent="ad-1">
+          <mxGeometry x="350" y="930" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="end-inner" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#ffffff;" vertex="1" parent="ad-1">
+          <mxGeometry x="355" y="935" width="20" height="20" as="geometry" />
+        </mxCell>
+        
+        <!-- Flow Arrows -->
+        <mxCell id="flow-start-cek" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="start-node" target="activity-cek-jadwal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-cek-decision" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="activity-cek-jadwal" target="decision-jadwal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-decision-tunggu" value="Tidak" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="decision-jadwal" target="activity-tunggu">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-decision-persiapan" value="Ya" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="decision-jadwal" target="activity-persiapan">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-persiapan-kalibrasi" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="activity-persiapan" target="activity-kalibrasi">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-kalibrasi-dokumentasi" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="activity-kalibrasi" target="activity-dokumentasi">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-dokumentasi-upload" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="activity-dokumentasi" target="activity-upload">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-upload-update" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="activity-upload" target="activity-update-status">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-update-laporan" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="activity-update-status" target="activity-laporan">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-laporan-end" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="activity-laporan" target="end-node">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="flow-tunggu-cek" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="ad-1" source="activity-tunggu" target="activity-cek-jadwal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="670" y="200" as="sourcePoint" />
+            <mxPoint x="450" y="130" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="720" y="230" />
+              <mxPoint x="720" y="130" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  
+  <!-- Sequence Diagram -->
+  <diagram name="Sequence-Diagram" id="sequence-diagram">
+    <mxGraphModel dx="1422" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="seq-0" />
+        <mxCell id="seq-1" parent="seq-0" />
+        
+        <!-- Actors/Objects -->
+        <mxCell id="teknisi" value="Teknisi" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" vertex="1" parent="seq-1">
+          <mxGeometry x="80" y="40" width="30" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="sistem" value="Sistem" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="seq-1">
+          <mxGeometry x="200" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="database" value="Database" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="seq-1">
+          <mxGeometry x="350" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="email-service" value="Email Service" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="seq-1">
+          <mxGeometry x="500" y="40" width="80" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Lifelines -->
+        <mxCell id="lifeline-teknisi" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="95" y="700" as="sourcePoint" />
+            <mxPoint x="95" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="lifeline-sistem" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="700" as="sourcePoint" />
+            <mxPoint x="240" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="lifeline-database" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="700" as="sourcePoint" />
+            <mxPoint x="390" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="lifeline-email" value="" style="endArrow=none;dashed=1;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="700" as="sourcePoint" />
+            <mxPoint x="540" y="100" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Messages -->
+        <mxCell id="msg-login" value="1: login(username, password)" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="95" y="140" as="sourcePoint" />
+            <mxPoint x="240" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-validate" value="2: validateUser()" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="160" as="sourcePoint" />
+            <mxPoint x="390" y="160" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-user-valid" value="3: userValid" style="endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="180" as="sourcePoint" />
+            <mxPoint x="240" y="180" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-login-success" value="4: loginSuccess" style="endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="200" as="sourcePoint" />
+            <mxPoint x="95" y="200" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-cek-jadwal" value="5: cekJadwalKalibrasi()" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="95" y="240" as="sourcePoint" />
+            <mxPoint x="240" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-get-jadwal" value="6: getJadwalOverdue()" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="260" as="sourcePoint" />
+            <mxPoint x="390" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-return-jadwal" value="7: listJadwal" style="endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="280" as="sourcePoint" />
+            <mxPoint x="240" y="280" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-show-jadwal" value="8: tampilkanJadwal" style="endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="300" as="sourcePoint" />
+            <mxPoint x="95" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-update-kalibrasi" value="9: updateKalibrasi(id, status)" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="95" y="340" as="sourcePoint" />
+            <mxPoint x="240" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-save-update" value="10: updateJadwal()" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="360" as="sourcePoint" />
+            <mxPoint x="390" y="360" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-confirm-update" value="11: updateSuccess" style="endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="380" as="sourcePoint" />
+            <mxPoint x="240" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-send-notification" value="12: sendNotification()" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="420" as="sourcePoint" />
+            <mxPoint x="540" y="420" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-email-sent" value="13: emailSent" style="endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="540" y="440" as="sourcePoint" />
+            <mxPoint x="240" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="msg-konfirmasi" value="14: konfirmasiUpdate" style="endArrow=classic;html=1;rounded=0;dashed=1;" edge="1" parent="seq-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="240" y="460" as="sourcePoint" />
+            <mxPoint x="95" y="460" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Activation Boxes -->
+        <mxCell id="activation-sistem-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="seq-1">
+          <mxGeometry x="235" y="140" width="10" height="340" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="activation-database-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="seq-1">
+          <mxGeometry x="385" y="160" width="10" height="240" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="activation-email-1" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="seq-1">
+          <mxGeometry x="535" y="420" width="10" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  
+  <!-- Class Diagram -->
+  <diagram name="Class-Diagram" id="class-diagram">
+    <mxGraphModel dx="1422" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="cd-0" />
+        <mxCell id="cd-1" parent="cd-0" />
+        
+        <!-- Class User -->
+        <mxCell id="class-user" value="User" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="cd-1">
+          <mxGeometry x="40" y="40" width="200" height="260" as="geometry" />
+        </mxCell>
+        <mxCell id="class-user-attr" value="- user_id: int&#xa;- username: string&#xa;- password: string&#xa;- nama_lengkap: string&#xa;- email: string&#xa;- role: string&#xa;- status_aktif: boolean&#xa;- created_at: timestamp&#xa;- updated_at: timestamp" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-user">
+          <mxGeometry y="26" width="200" height="144" as="geometry" />
+        </mxCell>
+        <mxCell id="class-user-line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="class-user">
+          <mxGeometry y="170" width="200" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class-user-methods" value="+ login(): boolean&#xa;+ logout(): void&#xa;+ updateProfile(): boolean&#xa;+ validateCredentials(): boolean&#xa;+ getRole(): string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-user">
+          <mxGeometry y="178" width="200" height="82" as="geometry" />
+        </mxCell>
+        
+        <!-- Class AlatMedis -->
+        <mxCell id="class-alat" value="AlatMedis" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="cd-1">
+          <mxGeometry x="280" y="40" width="220" height="300" as="geometry" />
+        </mxCell>
+        <mxCell id="class-alat-attr" value="- alat_id: int&#xa;- nama_alat: string&#xa;- merk: string&#xa;- model: string&#xa;- nomor_seri: string&#xa;- tahun_produksi: int&#xa;- tanggal_pembelian: date&#xa;- harga_pembelian: decimal&#xa;- lokasi_penempatan: string&#xa;- status_alat: string&#xa;- kategori: string&#xa;- spesifikasi_teknis: string&#xa;- created_at: timestamp&#xa;- updated_at: timestamp" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-alat">
+          <mxGeometry y="26" width="220" height="194" as="geometry" />
+        </mxCell>
+        <mxCell id="class-alat-line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="class-alat">
+          <mxGeometry y="220" width="220" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class-alat-methods" value="+ tambahAlat(): boolean&#xa;+ updateAlat(): boolean&#xa;+ hapusAlat(): boolean&#xa;+ getDetailAlat(): AlatMedis&#xa;+ updateStatus(status: string): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-alat">
+          <mxGeometry y="228" width="220" height="72" as="geometry" />
+        </mxCell>
+        
+        <!-- Class JadwalKalibrasi -->
+        <mxCell id="class-jadwal" value="JadwalKalibrasi" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="cd-1">
+          <mxGeometry x="540" y="40" width="250" height="280" as="geometry" />
+        </mxCell>
+        <mxCell id="class-jadwal-attr" value="- jadwal_id: int&#xa;- alat_id: int&#xa;- tanggal_kalibrasi_terakhir: date&#xa;- tanggal_kalibrasi_berikutnya: date&#xa;- interval_kalibrasi: int&#xa;- status_kalibrasi: string&#xa;- teknisi_penanggung_jawab: int&#xa;- catatan: string&#xa;- created_at: timestamp&#xa;- updated_at: timestamp" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-jadwal">
+          <mxGeometry y="26" width="250" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="class-jadwal-line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="class-jadwal">
+          <mxGeometry y="180" width="250" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class-jadwal-methods" value="+ buatJadwal(): boolean&#xa;+ updateJadwal(): boolean&#xa;+ hapusJadwal(): boolean&#xa;+ getJadwalMendatang(): array&#xa;+ updateStatusKalibrasi(status: string): void&#xa;+ hitungTanggalBerikutnya(): date" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-jadwal">
+          <mxGeometry y="188" width="250" height="92" as="geometry" />
+        </mxCell>
+        
+        <!-- Class DokumenKalibrasi -->
+        <mxCell id="class-dokumen" value="DokumenKalibrasi" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="cd-1">
+          <mxGeometry x="820" y="40" width="200" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="class-dokumen-attr" value="- dokumen_id: int&#xa;- jadwal_id: int&#xa;- nama_dokumen: string&#xa;- jenis_dokumen: string&#xa;- file_path: string&#xa;- ukuran_file: int&#xa;- upload_by: int&#xa;- tanggal_upload: timestamp&#xa;- keterangan: string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-dokumen">
+          <mxGeometry y="26" width="200" height="134" as="geometry" />
+        </mxCell>
+        <mxCell id="class-dokumen-line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="class-dokumen">
+          <mxGeometry y="160" width="200" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class-dokumen-methods" value="+ uploadDokumen(): boolean&#xa;+ hapusDokumen(): boolean&#xa;+ downloadDokumen(): file&#xa;+ updateKeterangan(): boolean" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-dokumen">
+          <mxGeometry y="168" width="200" height="72" as="geometry" />
+        </mxCell>
+        
+        <!-- Class LogAktivitas -->
+        <mxCell id="class-log" value="LogAktivitas" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="cd-1">
+          <mxGeometry x="280" y="380" width="200" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="class-log-attr" value="- log_id: int&#xa;- user_id: int&#xa;- alat_id: int&#xa;- aktivitas: string&#xa;- deskripsi: string&#xa;- timestamp: timestamp&#xa;- ip_address: string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-log">
+          <mxGeometry y="26" width="200" height="114" as="geometry" />
+        </mxCell>
+        <mxCell id="class-log-line" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" vertex="1" parent="class-log">
+          <mxGeometry y="140" width="200" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="class-log-methods" value="+ catatAktivitas(): boolean&#xa;+ getLogByUser(user_id: int): array&#xa;+ getLogByAlat(alat_id: int): array" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" vertex="1" parent="class-log">
+          <mxGeometry y="148" width="200" height="52" as="geometry" />
+        </mxCell>
+        
+        <!-- Associations -->
+        <mxCell id="assoc-user-jadwal-cd" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" edge="1" parent="cd-1" source="class-user" target="class-jadwal">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="560" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-alat-jadwal-cd" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" edge="1" parent="cd-1" source="class-alat" target="class-jadwal">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="560" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-jadwal-dokumen-cd" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" edge="1" parent="cd-1" source="class-jadwal" target="class-dokumen">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="560" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-user-dokumen-cd" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="cd-1" source="class-user" target="class-dokumen">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="560" y="300" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="640" y="105" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-user-log-cd" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" edge="1" parent="cd-1" source="class-user" target="class-log">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="560" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-alat-log-cd" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" edge="1" parent="cd-1" source="class-alat" target="class-log">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="560" y="300" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  
+  <!-- Use Case Diagram -->
+  <diagram name="Use-Case-Diagram" id="usecase-diagram">
+    <mxGraphModel dx="1422" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="uc-0" />
+        <mxCell id="uc-1" parent="uc-0" />
+        
+        <!-- System Boundary -->
+        <mxCell id="system-boundary" value="Sistem Inventaris Alat Medis" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="uc-1">
+          <mxGeometry x="200" y="50" width="600" height="500" as="geometry" />
+        </mxCell>
+        
+        <!-- Use Cases -->
+        <mxCell id="uc-login" value="Login ke Sistem" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="system-boundary">
+          <mxGeometry x="50" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc-kelola-alat" value="Kelola Data&#xa;Alat Medis" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="system-boundary">
+          <mxGeometry x="200" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc-kelola-jadwal" value="Kelola Jadwal&#xa;Kalibrasi" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="system-boundary">
+          <mxGeometry x="350" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc-kelola-dokumen" value="Kelola Dokumen&#xa;Kalibrasi" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="system-boundary">
+          <mxGeometry x="200" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc-generate-laporan" value="Generate&#xa;Laporan" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="system-boundary">
+          <mxGeometry x="350" y="150" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc-monitoring" value="Monitoring&#xa;Status Alat" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="system-boundary">
+          <mxGeometry x="200" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc-audit" value="Audit dan&#xa;Evaluasi" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="system-boundary">
+          <mxGeometry x="350" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="uc-logout" value="Logout" style="ellipse;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="system-boundary">
+          <mxGeometry x="275" y="350" width="120" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Actors -->
+        <mxCell id="actor-teknisi" value="Teknisi&#xa;Elektromedis" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="uc-1">
+          <mxGeometry x="50" y="200" width="30" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="actor-sarana" value="Unit Sarana&#xa;Prasarana" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="uc-1">
+          <mxGeometry x="50" y="300" width="30" height="60" as="geometry" />
+        </mxCell>
+        
+        <mxCell id="actor-manajemen" value="Manajemen&#xa;Rumah Sakit" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="uc-1">
+          <mxGeometry x="50" y="400" width="30" height="60" as="geometry" />
+        </mxCell>
+        
+        <!-- Associations Teknisi -->
+        <mxCell id="assoc-teknisi-login" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-teknisi" target="uc-login">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-teknisi-alat" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-teknisi" target="uc-kelola-alat">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-teknisi-jadwal" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-teknisi" target="uc-kelola-jadwal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-teknisi-dokumen" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-teknisi" target="uc-kelola-dokumen">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-teknisi-monitoring" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-teknisi" target="uc-monitoring">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-teknisi-logout" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-teknisi" target="uc-logout">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Associations Sarana -->
+        <mxCell id="assoc-sarana-login" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-sarana" target="uc-login">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-sarana-alat" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-sarana" target="uc-kelola-alat">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-sarana-jadwal" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-sarana" target="uc-kelola-jadwal">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-sarana-monitoring" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-sarana" target="uc-monitoring">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-sarana-laporan" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-sarana" target="uc-generate-laporan">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-sarana-logout" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-sarana" target="uc-logout">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <!-- Associations Manajemen -->
+        <mxCell id="assoc-manajemen-login" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-manajemen" target="uc-login">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-manajemen-laporan" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-manajemen" target="uc-generate-laporan">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-manajemen-monitoring" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-manajemen" target="uc-monitoring">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-manajemen-audit" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-manajemen" target="uc-audit">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        
+        <mxCell id="assoc-manajemen-logout" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="uc-1" source="actor-manajemen" target="uc-logout">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="400" y="300" as="sourcePoint" />
+            <mxPoint x="450" y="250" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
