@@ -1,4 +1,3 @@
--- Blood Bank Database Design and Implementation Using SQL Operations
 DROP DATABASE IF EXISTS blood_bank_db;
 -- CREATE DATABASE: Membuat database
 CREATE DATABASE blood_bank_db;
